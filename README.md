@@ -1,0 +1,1 @@
+# pyfujitsu_for_homeassistant
