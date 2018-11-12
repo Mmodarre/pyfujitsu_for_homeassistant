@@ -1,6 +1,6 @@
 # pyfujitsu_for_homeassistant
 
-This is a platform to support Fujitsu General Airconditioners under Climate component of Home Assistant. 
+This is a platform to support Fujitsu General Airconditioners under Climate component of Home Assistant. The Python supporting library for accessing the FGLair API is located at: https://github.com/Mmodarre/pyfujitsu
 
 ### Sample UI:
 
@@ -21,3 +21,10 @@ climate:
 ```
 4. Restart Home Assistant in order for the new component to show and all of your A/Cs in your account should appear in HASS.
 
+### Known issues and missing features:
+
+1. Google Assistant integration is not working [most possibly due to states not matching what Google assistant is expecting]
+2. Logging needs to be implemented
+3. The “powerful” functionality is implemented through aux_heat button in UI
+4. There are some other functionalities in the A/C which currently is not implemented.
+5. Could not reverse engineer the API to give the ambient room temperature. If you figured it out let me know and I am happy to update the library.
