@@ -7,9 +7,18 @@ import logging
 import voluptuous as vol
 
 from homeassistant.components.climate import (
-    PLATFORM_SCHEMA, SUPPORT_FAN_MODE,
-    SUPPORT_OPERATION_MODE, SUPPORT_SWING_MODE, SUPPORT_TARGET_TEMPERATURE, SUPPORT_ON_OFF,
-    ClimateDevice, SUPPORT_AUX_HEAT)
+    PLATFORM_SCHEMA,
+    ClimateDevice
+)
+
+from homeassistant.components.climate.const import (
+    SUPPORT_FAN_MODE,
+    SUPPORT_OPERATION_MODE,
+    SUPPORT_SWING_MODE,
+    SUPPORT_TARGET_TEMPERATURE,
+    SUPPORT_ON_OFF,
+    SUPPORT_AUX_HEAT
+)
 
 from homeassistant.const import (ATTR_TEMPERATURE, CONF_USERNAME, CONF_PASSWORD, TEMP_CELSIUS)
 import homeassistant.helpers.config_validation as cv
