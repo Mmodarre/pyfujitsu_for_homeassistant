@@ -8,9 +8,11 @@ This is a platform to support Fujitsu General Airconditioners under Climate comp
 ![UI_SCREENSHOT](https://github.com/Mmodarre/pyfujitsu_for_homeassistant/blob/master/Capture2.PNG)
 
 ### Usage:
-1. create this directory path `/config/custom_components/climate/` if it does not already exist.
+1. create this directory path `/config/custom_components/fujitsu_general_heatpump/` if it does not already exist.
 
-2. Download the `fujitsu_general_heatpump.py` from the repo and place it in the climate directory mentioned in previous step. So the end result would look like: `/config/custom_components/climate/fujitsu_general_heatpump.py`
+2. Download the `fujitsu_general_heatpump.py` from the repo and place it in the  directory mentioned in previous step. Rename `fujitsu_general_heatpump.py` to `climate.py`
+
+So the end result would look like: `/config/custom_components/fujitsu_general_heatpump/climate.py`
 
 3. add the below lines to your `configuration.yaml` file and replace it with your FGLair app username/password:
 ```
