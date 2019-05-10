@@ -29,7 +29,7 @@ climate:
 
 ### Known issues and missing features:
 
-1. Google Assistant integration is not working [most possibly due to states not matching what Google assistant is expecting]
+[RESOLVED]1. Google Assistant integration is not working [most possibly due to states not matching what Google assistant is expecting]
 2. Logging needs to be implemented
 3. The “powerful” functionality is implemented through aux_heat button in UI
 4. There are some other functionalities in the A/C which currently is not implemented.
