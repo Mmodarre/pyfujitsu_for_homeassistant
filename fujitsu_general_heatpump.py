@@ -12,15 +12,14 @@ from homeassistant.components.climate import (
 )
 
 from homeassistant.components.climate.const import (
-    SUPPORT_FAN_MODE,
-    SUPPORT_OPERATION_MODE,
-    SUPPORT_SWING_MODE,
-    SUPPORT_TARGET_TEMPERATURE,
-    SUPPORT_ON_OFF,
-    SUPPORT_AUX_HEAT
+    ATTR_AWAY_MODE, ATTR_CURRENT_TEMPERATURE, ATTR_FAN_MODE,
+    ATTR_OPERATION_MODE, ATTR_SWING_MODE, STATE_AUTO, STATE_COOL, STATE_DRY,
+    STATE_FAN_ONLY, STATE_HEAT, SUPPORT_AWAY_MODE, SUPPORT_FAN_MODE,
+    SUPPORT_ON_OFF, SUPPORT_OPERATION_MODE, SUPPORT_SWING_MODE,
+    SUPPORT_TARGET_TEMPERATURE,  SUPPORT_AUX_HEAT
 )
 
-from homeassistant.const import (ATTR_TEMPERATURE, CONF_USERNAME, CONF_PASSWORD, TEMP_CELSIUS)
+from homeassistant.const import (ATTR_TEMPERATURE, CONF_USERNAME, CONF_PASSWORD, TEMP_CELSIUS,STATE_ON, STATE_OFF,STATE_ON)
 import homeassistant.helpers.config_validation as cv
 
 REQUIREMENTS = ['pyfujitsu==0.8.1.1']
@@ -33,6 +32,35 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
     vol.Required(CONF_USERNAME): cv.string,
     vol.Optional(CONF_PASSWORD): cv.string,
 })
+
+HA_STATE_TO_FUJITSU = {
+    STATE_FAN_ONLY: 'Fan',
+    STATE_DRY: 'Dry',
+    STATE_COOL: 'Cool',
+    STATE_HEAT: 'Heat',
+    STATE_AUTO: 'Auto',
+    STATE_OFF: 'Off',
+    STATE_ON: 'On'
+}
+
+FUJITSU_TO_HA_STATE = {
+    'Fan': STATE_FAN_ONLY,
+    'Dry': STATE_DRY,
+    'Cool': STATE_COOL,
+    'Heat': STATE_HEAT,
+    'Auto': STATE_AUTO,
+    'fan': STATE_FAN_ONLY,
+    'dry': STATE_DRY,
+    'cool': STATE_COOL,
+    'heat': STATE_HEAT,
+    'Auto': STATE_AUTO,
+    
+    'Off': STATE_OFF,
+    'off': STATE_OFF,
+    
+    'On': STATE_ON,
+    'on': STATE_ON
+}
 
 def setup_platform(hass, config, add_entities, discovery_info=None):
     """Set up the Fujitsu Split platform."""
@@ -63,10 +91,10 @@ class FujitsuClimate(ClimateDevice):
         self._target_temperature = self.target_temperature
         self._unit_of_measurement = self.unit_of_measurement
         self._current_fan_mode = self.current_fan_mode
-        self._current_operation = self.current_operation
+        self._current_operation = FUJITSU_TO_HA_STATE[self.current_operation]
         self._current_swing_mode = self.current_swing_mode
         self._fan_list = ['Quiet', 'Low', 'Medium', 'High', 'Auto']
-        self._operation_list = ['Heat', 'Cool', 'Auto', 'Dry', 'Fan']
+        self._operation_list = [FUJITSU_TO_HA_STATE['Heat'], FUJITSU_TO_HA_STATE['Cool'], FUJITSU_TO_HA_STATE['Auto'], FUJITSU_TO_HA_STATE['Dry'], FUJITSU_TO_HA_STATE['Fan'],FUJITSU_TO_HA_STATE['Off'],FUJITSU_TO_HA_STATE['On']]
         self._swing_list = ['Vertical Swing','Horizontal Swing', 'Vertical high',
                             'Vertical Mid', 'Vertical Low' ]
         self._target_temperature_high = self.target_temperature_high
@@ -91,7 +119,7 @@ class FujitsuClimate(ClimateDevice):
     @property
     def current_operation(self):
         """Return current operation ie. heat, cool, idle."""
-        return self._fujitsu_device.operation_mode_desc
+        return FUJITSU_TO_HA_STATE[self._fujitsu_device.operation_mode_desc]
 
     @property
     def operation_list(self):
