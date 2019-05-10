@@ -10,6 +10,7 @@ This is a platform to support Fujitsu General Airconditioners under Climate comp
 ### Usage:
 1. create this directory path `/config/custom_components/fujitsu_general_heatpump/` if it does not already exist.
 
+
 2. Download the `fujitsu_general_heatpump.py` `manifest.json' and 'init.py` from the repo and place it in the  directory mentioned in previous step. Rename `fujitsu_general_heatpump.py` to `climate.py`
 
 So the end result would look like: 
