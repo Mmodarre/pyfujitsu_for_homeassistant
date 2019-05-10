@@ -14,9 +14,9 @@ This is a platform to support Fujitsu General Airconditioners under Climate comp
 2. Download the `fujitsu_general_heatpump.py` `manifest.json' and 'init.py` from the repo and place it in the  directory mentioned in previous step. Rename `fujitsu_general_heatpump.py` to `climate.py`
 
 So the end result would look like: 
-`/config/custom_components/fujitsu_general_heatpump.py/climate.py`
-`/config/custom_components/fujitsu_general_heatpump.py/manifest.json`
-`/config/custom_components/fujitsu_general_heatpump.py/init.py`
+`/config/custom_components/fujitsu_general_heatpump/climate.py`
+`/config/custom_components/fujitsu_general_heatpump/manifest.json`
+`/config/custom_components/fujitsu_general_heatpump/init.py`
 
 3. add the below lines to your `configuration.yaml` file and replace it with your FGLair app username/password:
 ```
