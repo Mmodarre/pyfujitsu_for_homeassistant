@@ -28,7 +28,7 @@ __version__ = '0.9.0'
 
 _LOGGER = logging.getLogger(__name__)
 
-REQUIREMENTS = ['https://github.com/xerxes87/pyfujitseu/archive/0.9.2.7.zip#pyfujitseu==0.9.2.7']
+REQUIREMENTS = ['pyfujitsu==0.9.0']
 
 # Values from web interface
 MIN_TEMP = 16
