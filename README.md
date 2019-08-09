@@ -4,7 +4,7 @@ This is a platform to support Fujitsu General Airconditioners under Climate comp
 
 ### Sample UI:
 
-![UI_SCREENSHOT](https://github.com/Mmodarre/pyfujitsu_for_homeassistant/blob/master/ha_fujitsu.jpg)
+![UI_SCREENSHOT](https://raw.githubusercontent.com/xerxes87/pyfujitsu_for_homeassistant/master/ha_fujitsu.jpg)
 
 ### Usage:
 1. create this directory path `/config/custom_components/fujitsu_general_heatpump/` if it does not already exist.
@@ -34,7 +34,7 @@ climate:
     username: !secret FGLAIR_USER
     password: !secret FGLAIR_PASS
     region: 'eu'
-    tokenpath: 'home/homeassistant/token.txt'
+    tokenpath: '/home/homeassistant/token.txt'
 ```
 
 4. Restart Home Assistant in order for the new component to show and all of your A/Cs in your account should appear in HASS.
