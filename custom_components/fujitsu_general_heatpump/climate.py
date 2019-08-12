@@ -65,8 +65,8 @@ FUJITSU_FAN_TO_HA = {
 def setup_platform(hass, config, add_entities, discovery_info=None):
     """Setup the E-Thermostaat Platform."""
     _LOGGER.debug("FujitsuClimate setup_platform called")
-    import pyfujitseu.api as fgapi
-    _LOGGER.debug("FujitsuClimate pyfujitseu.api import called")    
+    import pyfujitsu.api as fgapi
+    _LOGGER.debug("FujitsuClimate pyfujitsu.api import called")    
     username = config.get(CONF_USERNAME)
     password = config.get(CONF_PASSWORD)
     region = config.get('region')
@@ -91,8 +91,8 @@ class FujitsuClimate(ClimateDevice):
     def __init__(self, api, dsn):
         """Initialize the thermostat."""
         _LOGGER.debug("FujitsuClimate init called for dsn: %s", dsn)
-        import pyfujitseu.splitAC as splitAC
-        _LOGGER.debug("FujitsuClimate pyfujitseu.splitAC called")
+        import pyfujitsu.splitAC as splitAC
+        _LOGGER.debug("FujitsuClimate pyfujitsu.splitAC called")
         self._api = api
         self._dsn = dsn
         self._fujitsu_device = splitAC.splitAC(self._dsn, self._api)
