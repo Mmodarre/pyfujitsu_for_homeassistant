@@ -34,7 +34,7 @@ climate:
     username: !secret FGLAIR_USER
     password: !secret FGLAIR_PASS
     region: 'eu'
-    tokenpath: '/home/homeassistant/token.txt'
+    tokenpath: 'token.txt'
 ```
 
 4. Restart Home Assistant in order for the new component to show and all of your A/Cs in your account should appear in HASS.
