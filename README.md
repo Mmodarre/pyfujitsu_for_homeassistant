@@ -13,10 +13,11 @@ This is a platform to support Fujitsu General Airconditioners under Climate comp
 
 2. Download the `fujitsu_general_heatpump.py` `manifest.json' and 'init.py` from the repo and place it in the  directory mentioned in previous step. Rename `fujitsu_general_heatpump.py` to `climate.py`
 
-So the end result would look like: 
-`/config/custom_components/fujitsu_general_heatpump/climate.py`
-`/config/custom_components/fujitsu_general_heatpump/manifest.json`
-`/config/custom_components/fujitsu_general_heatpump/init.py`
+So the end result would look like:
+- `/config/custom_components/fujitsu_general_heatpump/`
+  - `climate.py`
+  - `manifest.json`
+  - `init.py`
 
 3. add the below lines to your `configuration.yaml` file and replace it with your FGLair app username/password:
 ```
@@ -29,7 +30,8 @@ climate:
 
 ### Known issues and missing features:
 
-[RESOLVED]1. Google Assistant integration is not working [most possibly due to states not matching what Google assistant is expecting]
+
+1. [RESOLVED] Google Assistant integration is not working [most possibly due to states not matching what Google assistant is expecting]
 2. Logging needs to be implemented
 3. The “powerful” functionality is implemented through aux_heat button in UI
 4. There are some other functionalities in the A/C which currently is not implemented.
