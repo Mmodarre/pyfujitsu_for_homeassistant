@@ -26,9 +26,11 @@ import homeassistant.helpers.config_validation as cv
 
 __version__ = '0.9.0' 
 
+
+
 _LOGGER = logging.getLogger(__name__)
 
-REQUIREMENTS = ['pyfujitsu==0.9.0']
+#REQUIREMENTS = ['pyfujitseu==0.9.3.2']
 
 # Values from web interface
 MIN_TEMP = 16
@@ -64,9 +66,12 @@ FUJITSU_FAN_TO_HA = {
 
 def setup_platform(hass, config, add_entities, discovery_info=None):
     """Setup the E-Thermostaat Platform."""
+    
     _LOGGER.debug("FujitsuClimate setup_platform called")
-    import pyfujitsu.api as fgapi
-    _LOGGER.debug("FujitsuClimate pyfujitsu.api import called")    
+    import pyfujitseu.api as fgapi
+    _LOGGER.debug("FujitsuClimate setup_platform called")
+    
+    _LOGGER.debug("FujitsuClimate pyfujitseu.api import called")    
     username = config.get(CONF_USERNAME)
     password = config.get(CONF_PASSWORD)
     region = config.get('region')
@@ -91,8 +96,8 @@ class FujitsuClimate(ClimateDevice):
     def __init__(self, api, dsn):
         """Initialize the thermostat."""
         _LOGGER.debug("FujitsuClimate init called for dsn: %s", dsn)
-        import pyfujitsu.splitAC as splitAC
-        _LOGGER.debug("FujitsuClimate pyfujitsu.splitAC called")
+        import pyfujitseu.splitAC as splitAC
+        _LOGGER.debug("FujitsuClimate pyfujitseu.splitAC called")
         self._api = api
         self._dsn = dsn
         self._fujitsu_device = splitAC.splitAC(self._dsn, self._api)
@@ -122,11 +127,11 @@ class FujitsuClimate(ClimateDevice):
     def is_aux_heat_on(self):
         """Reusing is for Powerfull mode."""
         if not hasattr(self._fujitsu_device.powerful_mode, 'value'):
-            return False
+           return False
         elif self._fujitsu_device.powerful_mode['value'] == 1:
-            return True
+           return True
         else:
-            return False
+           return False
             
     @property
     def target_temperature(self):
@@ -150,6 +155,7 @@ class FujitsuClimate(ClimateDevice):
     @property
     def hvac_mode(self):
         """Return current operation ie. heat, cool, idle."""
+        _LOGGER.debug("FujitsuClimate hvac_mode: %s", self._fujitsu_device.operation_mode['value'])
         return self._fujitsu_device.operation_mode_desc
        
     @property
@@ -164,6 +170,7 @@ class FujitsuClimate(ClimateDevice):
             """Turn device off."""
             self._fujitsu_device.turnOff()
         elif(self._hvac_mode != hvac_mode):
+            _LOGGER.debug("FujitsuClimate set_hvac_mode elif path called. ")
             self._fujitsu_device.changeOperationMode(hvac_mode)
         
     def set_temperature(self, **kwargs):
