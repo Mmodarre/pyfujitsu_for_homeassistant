@@ -4,8 +4,9 @@ Support for the Fujitsu General Split A/C Wifi platform AKA FGLair .
 
 import logging
 import voluptuous as vol
+import pyfujitseu
 
-from homeassistant.components.climate import ClimateDevice, PLATFORM_SCHEMA
+from homeassistant.components.climate import ClimateEntity, PLATFORM_SCHEMA
 from homeassistant.components.climate.const import (
     HVAC_MODE_OFF,
     HVAC_MODE_HEAT,
@@ -24,7 +25,7 @@ from homeassistant.const import (
     ATTR_TEMPERATURE, CONF_USERNAME, CONF_PASSWORD, TEMP_CELSIUS)
 import homeassistant.helpers.config_validation as cv
 
-__version__ = '0.9.0' 
+__version__ = '0.9.1' 
 
 
 
@@ -90,7 +91,7 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
     _LOGGER.debug("FujitsuClimate setup_platform fine")
 
 
-class FujitsuClimate(ClimateDevice):
+class FujitsuClimate(ClimateEntity):
     """Representation of a E-Thermostaat device."""
 
     def __init__(self, api, dsn):
@@ -167,7 +168,6 @@ class FujitsuClimate(ClimateDevice):
         """Set HVAC mode."""
         _LOGGER.debug("FujitsuClimate set_hvac_mode called. self._hvac_mode: %s ; hvac_mode: %s", self._hvac_mode, hvac_mode)
         if(hvac_mode == HVAC_MODE_OFF):
-            """Turn device off."""
             self._fujitsu_device.turnOff()
         elif(self._hvac_mode != hvac_mode):
             _LOGGER.debug("FujitsuClimate set_hvac_mode elif path called. ")
