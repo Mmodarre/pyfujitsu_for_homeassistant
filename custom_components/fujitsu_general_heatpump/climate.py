@@ -73,14 +73,13 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
     _LOGGER.debug("FujitsuClimate setup_platform called")
     _LOGGER.debug("FujitsuClimate setup_platform called")
     
-    _LOGGER.debug("FujitsuClimate pyfujitseu.api import called")    
     username = config.get(CONF_USERNAME)
     password = config.get(CONF_PASSWORD)
     region = config.get('region')
     tokenpath = config.get('tokenpath')
     _LOGGER.debug("FujitsuClimate config.get ")
     
-    fglairapi = fgapi.Api(username, password, region, tokenpath)
+    fglairapi = fgapi(username, password, region, tokenpath)
     if not fglairapi._authenticate():
         _LOGGER.error("Unable to authenticate with Fujistsu General")
         return
