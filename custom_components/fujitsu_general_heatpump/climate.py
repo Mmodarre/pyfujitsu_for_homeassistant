@@ -100,7 +100,7 @@ class FujitsuClimate(ClimateEntity):
         _LOGGER.debug("FujitsuClimate pyfujitseu.splitAC called")
         self._api = api
         self._dsn = dsn
-        self._fujitsu_device = splitAC.splitAC(self._dsn, self._api)
+        self._fujitsu_device = splitAC(self._dsn, self._api)
         _LOGGER.debug("FujitsuClimate _fujitsu_device setup.")        
         self._name = self.name
         _LOGGER.debug("FujitsuClimate name set: %s", self._name)
