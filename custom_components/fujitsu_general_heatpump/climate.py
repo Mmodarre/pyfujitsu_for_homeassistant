@@ -4,7 +4,9 @@ Support for the Fujitsu General Split A/C Wifi platform AKA FGLair .
 
 import logging
 import voluptuous as vol
-import pyfujitseu
+from pyfujitseu.api import Api as fgapi
+from pyfujitseu.splitAC import splitAC
+
 
 from homeassistant.components.climate import ClimateEntity, PLATFORM_SCHEMA
 from homeassistant.components.climate.const import (
@@ -69,17 +71,15 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
     """Setup the E-Thermostaat Platform."""
     
     _LOGGER.debug("FujitsuClimate setup_platform called")
-    import pyfujitseu.api as fgapi
     _LOGGER.debug("FujitsuClimate setup_platform called")
     
-    _LOGGER.debug("FujitsuClimate pyfujitseu.api import called")    
     username = config.get(CONF_USERNAME)
     password = config.get(CONF_PASSWORD)
     region = config.get('region')
     tokenpath = config.get('tokenpath')
     _LOGGER.debug("FujitsuClimate config.get ")
     
-    fglairapi = fgapi.Api(username, password, region, tokenpath)
+    fglairapi = fgapi(username, password, region, tokenpath)
     if not fglairapi._authenticate():
         _LOGGER.error("Unable to authenticate with Fujistsu General")
         return
@@ -97,11 +97,10 @@ class FujitsuClimate(ClimateEntity):
     def __init__(self, api, dsn):
         """Initialize the thermostat."""
         _LOGGER.debug("FujitsuClimate init called for dsn: %s", dsn)
-        import pyfujitseu.splitAC as splitAC
         _LOGGER.debug("FujitsuClimate pyfujitseu.splitAC called")
         self._api = api
         self._dsn = dsn
-        self._fujitsu_device = splitAC.splitAC(self._dsn, self._api)
+        self._fujitsu_device = splitAC(self._dsn, self._api)
         _LOGGER.debug("FujitsuClimate _fujitsu_device setup.")        
         self._name = self.name
         _LOGGER.debug("FujitsuClimate name set: %s", self._name)
