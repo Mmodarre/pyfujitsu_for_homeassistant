@@ -1,8 +1,0 @@
-{
-    "domain": "https://github.com/Mmodarre/pyfujitsu_for_homeassistant",
-    "name": "fujitsu_general_heatpump",
-    "documentation": "https://github.com/Mmodarre/pyfujitsu_for_homeassistant/blob/master/README.md",
-    "dependencies": [],
-    "codeowners": [],
-    "requirements": ["pyfujitsu==0.8.1.1"]
-  }
