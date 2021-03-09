@@ -7,5 +7,6 @@
   "codeowners": [
       "@Mmodarre",
       "@xerxes87"
-  ]
+  ],
+  "version": "1.0"
 }
